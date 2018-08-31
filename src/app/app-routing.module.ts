@@ -11,6 +11,7 @@ import { SearchVehiclesComponent } from './components/search-vehicles/search-veh
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'unit-details/:unit', component: UnitDetailsComponent, canActivate: [CanReadGuard]},
   {path: 'unit-details', component: UnitDetailsComponent, canActivate: [CanReadGuard]},
   {path: 'search-vehicles', component: SearchVehiclesComponent, canActivate: [CanReadGuard]},
   {path: 'property-managers', component: ListPropertyManagersComponent, canActivate: [CanReadGuard]}

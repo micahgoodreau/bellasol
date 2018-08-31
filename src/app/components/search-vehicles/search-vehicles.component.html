@@ -1,1 +1,25 @@
-<h2>Vehicle Search Coming Soon</h2>
+<h2>Vehicle Search</h2>
+<div>
+<label style="padding: 1em;">
+    Plate Nuber:
+    <input type="text" [formControl]="plateNumber">
+  </label>
+  <label style="padding: 1em;">
+      Sticker Number:
+      <input type="text" [formControl]="stickerNumber">
+    </label>
+
+  <button (click)="findVehicle(plateNumber.value, stickerNumber.value)">Search</button>
+</div>
+<div *ngIf="this.vehicles; then authenticated">
+
+  </div>
+  <ng-template #authenticated>
+
+<ul>
+    <li class="text" *ngFor="let vehicle of vehicles | async">
+      <a routerLink="/unit-details/{{vehicle.UnitNumber}}">{{vehicle.StickerNumber}} -- {{vehicle.PlateNumber}} {{vehicle.PlateState}} {{vehicle.Year}} {{vehicle.Color}} {{vehicle.Make}} {{vehicle.Model}}</a>
+    </li>
+  </ul>
+
+  </ng-template>

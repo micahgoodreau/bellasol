@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -19,7 +20,7 @@ export class UnitDetailsComponent implements OnInit {
   rForm: FormGroup;
   unitnumber: String;
   faPlusCircle = faPlusCircle;
-  constructor(public dialog: MatDialog, private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private fb: FormBuilder) {
     this.rForm = fb.group({
       'animal': [null],
       'animalname': [null],
@@ -58,7 +59,11 @@ export class UnitDetailsComponent implements OnInit {
   findUnit(unitNumber) {
     this.unitnumber = unitNumber;
   }
-  ngOnInit() {
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('unit');
+    if (id !== '') {
+      this.findUnit(id);
+    }
   }
 
 }

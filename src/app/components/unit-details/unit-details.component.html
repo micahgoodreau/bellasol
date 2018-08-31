@@ -3,6 +3,7 @@
     Unit:
     <input type="text" [formControl]="name">
   </label>
+
   <button (click)="findUnit(name.value)">Get Unit Details</button>
 </div>
 <div *ngIf="this.unitnumber; then authenticated">

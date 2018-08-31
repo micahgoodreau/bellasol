@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs';
+import { PropertyManager } from '../../propertymanager';
 
 @Component({
   selector: 'app-list-property-managers',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListPropertyManagersComponent implements OnInit {
 
-  constructor() { }
+  items: Observable<PropertyManager[]>;
+  constructor(db: AngularFirestore) {
+    this.items = db.collection('propertyManagers').valueChanges();
+   }
+
 
   ngOnInit() {
   }

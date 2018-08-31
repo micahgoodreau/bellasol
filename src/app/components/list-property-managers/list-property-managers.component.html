@@ -1,1 +1,7 @@
-<h2>Property Managers List Coming Soon</h2>
+<h2>Property Managers List</h2>
+
+<ul>
+    <li class="text" *ngFor="let item of items | async">
+      {{item.Company}} -- {{item.FirstName}} {{item.LastName}} W:{{item.WorkPhone}} M: {{item.MobilePhone}} Email: {{item.Email}}
+    </li>
+  </ul>
