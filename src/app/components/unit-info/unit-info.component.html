@@ -1,0 +1,14 @@
+<div class="card-deck mb-5">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Unit {{ (item | async)?.UnitNumber }}</h4>
+      <p class="card-text">Association: {{ (item | async)?.AssociationNumber }}</p>
+      <p class="card-text">Building Address: {{ (item | async)?.BuildingAddress }}</p>
+      <p class="card-text">Unit Type: {{ (item | async)?.UnitType }}</p>
+      <p class="card-text">Property Manager: {{ (item | async)?.PropertyManager }}</p>
+    </div>
+    <div class="card-footer">
+        <fa-icon class="fa-pencil float-left" [icon]="faPencilAlt" (click)="openDialog(item)"></fa-icon>
+    </div>
+  </div>
+</div>

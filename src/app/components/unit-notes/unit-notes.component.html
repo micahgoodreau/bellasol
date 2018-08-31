@@ -1,0 +1,9 @@
+<h2>Notes</h2>
+<div>
+  <ul>
+    <li class="text" *ngFor="let item of notes | async">
+      Created by: {{item.CreatedBy}} on {{item.CreatedAt}}
+      <p>{{item.NoteContent}}</p>
+    </li>
+  </ul>
+</div>

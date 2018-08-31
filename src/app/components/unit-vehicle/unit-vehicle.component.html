@@ -1,0 +1,17 @@
+<div class="card-deck mb-5">
+  <div class="card" *ngFor="let item of vehicles | async">
+    <div class="card-body">
+      <h4 class="card-title">Sticker Number: {{ item.StickerNumber }}</h4>
+      <p class="card-text">{{ item.Year }}</p>
+      <p class="card-text">{{ item.Make }}</p>
+      <p class="card-text">{{ item.Model }}</p>
+      <p class="card-text">{{ item.Color }}</p>
+      <p class="card-text">{{ item.PlateNumber }}</p>
+      <p class="card-text">{{ item.PlateState }}</p>
+    </div>
+    <div class="card-footer">
+      <fa-icon class="fa-trash float-right" [icon]="faTrash" (click)="deleteVehicle(item.id)"></fa-icon>
+      <fa-icon class="fa-pencil float-left" [icon]="faPencilAlt" (click)="openDialog(item)"></fa-icon>
+    </div>
+  </div>
+</div>

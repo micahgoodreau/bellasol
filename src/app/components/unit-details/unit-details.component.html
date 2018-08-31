@@ -1,0 +1,21 @@
+<div style="padding: 1em;">
+  <label style="padding: 1em;">
+    Unit:
+    <input type="text" [formControl]="name">
+  </label>
+  <button (click)="findUnit(name.value)">Get Unit Details</button>
+</div>
+<div *ngIf="this.unitnumber; then authenticated">
+
+  </div>
+  <ng-template #authenticated>
+<app-unit-info unitNumber={{this.unitnumber}}></app-unit-info>
+<app-unit-leepa unitNumber={{this.unitnumber}}></app-unit-leepa>
+<h2>Owners  <fa-icon class="fa-trash" [icon]="faPlusCircle" (click)="openOwnerDialog()"></fa-icon></h2>
+<app-unit-owners unitNumber={{this.unitnumber}}></app-unit-owners>
+<h2>Vehicles  <fa-icon class="fa-trash" [icon]="faPlusCircle" (click)="openVehicleDialog()"></fa-icon></h2>
+<app-unit-vehicle unitNumber={{this.unitnumber}}></app-unit-vehicle>
+<h2>Tenants  <fa-icon class="fa-trash" [icon]="faPlusCircle" (click)="openDialog()"></fa-icon></h2>
+<app-unit-tenants unitNumber={{this.unitnumber}}></app-unit-tenants>
+<app-unit-notes unitNumber={{this.unitnumber}}></app-unit-notes>
+</ng-template>

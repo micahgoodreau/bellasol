@@ -1,0 +1,74 @@
+<div *ngIf="!fname; else forminfo">
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+
+    <h2>Add Owner - Unit {{this.id}}</h2>
+
+      <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="First Name" formControlName="fname">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Last Name" formControlName="lname">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Address" formControlName="address">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="State" formControlName="state">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="City" formControlName="city">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Zip" formControlName="zip">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Mobile Phone" formControlName="mphone">
+      </mat-form-field>
+    </div>
+      <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Home Phone" formControlName="hphone">
+      </mat-form-field>
+    </div>
+      <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Work Phone" formControlName="wphone">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Email" formControlName="email">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="Other Email" formControlName="oemail">
+      </mat-form-field>
+      </div>
+
+    <input type="submit" class="button expanded" value="Submit Form" [disabled]="!rForm.valid">
+  </form>
+
+  <button (click)="goBack()">go back</button>
+</div>
+
+<ng-template #forminfo>
+  <div class="form-container">
+    <div class="row columns">
+      <h1>Owner Added Successfully</h1>
+    </div>
+  </div>
+</ng-template>

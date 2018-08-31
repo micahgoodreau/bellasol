@@ -1,0 +1,15 @@
+<h2>Lee Property Appraiser's Data</h2>
+<div class="card-deck mb-5">
+  <div class="card">
+    <div class="card-body">
+      <p class="card-text"><a href="https://www.leepa.org/Display/DisplayParcel.aspx?FolioID={{ (item | async)?.folio }}">View on leepa website.</a></p>
+      <p></p>
+      <p class="card-text">{{ (item | async)?.ownerline1 }}</p>
+      <p class="card-text">{{ (item | async)?.ownerline2 }}</p>
+      <p class="card-text">{{ (item | async)?.ownerline3 }}</p>
+      <p class="card-text">{{ (item | async)?.ownerline4 }}</p>
+      <p class="card-text">{{ (item | async)?.ownerline5 }}</p>
+      <p class="card-text">{{ (item | async)?.updated }}</p>
+    </div>
+  </div>
+</div>

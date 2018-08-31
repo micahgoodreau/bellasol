@@ -1,0 +1,19 @@
+<div class="card-deck mb-5">
+    <div class="card" *ngFor="let tenant of tenants | async">
+        <div class="card-body">
+            <h4 class="card-title">{{ tenant.FirstName }} {{ tenant.LastName }}</h4>
+            <p class="card-text">Email 1: {{ tenant.Email }}</p>
+            <p class="card-text">Email 2: {{ tenant.OtherEmail }}</p>
+            <p class="card-text">M: {{ tenant.MobilePhone }}</p>
+            <p class="card-text">H: {{ tenant.HomePhone }}</p>
+            <p class="card-text">W: {{ tenant.WorkPhone }}</p>
+            <p class="card-text">Created by: {{ tenant.CreatedByDisplayName }} - {{ tenant.CreatedTimeStamp | date : "medium" }}</p>
+            <p class="card-text">Modified by: {{ tenant.UpdatedBy }}  {{ tenant.UpdateTimeStamp | date : "medium" }}</p>
+          </div>
+          <div class="card-footer">
+              <p class="card-text float-left"><i class="fa fa-pencil" aria-hidden="true" (click)="openTenantDialog('Edit', tenant)"></i></p>
+              <fa-icon class="fa-trash float-right" [icon]="faTrash" (click)="deleteTenant(tenant.id)"></fa-icon>
+              <fa-icon class="fa-pencil float-left" [icon]="faPencilAlt" (click)="openDialog(tenant)"></fa-icon>
+          </div>
+        </div>
+  </div>

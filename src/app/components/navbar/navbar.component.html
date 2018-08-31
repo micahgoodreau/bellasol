@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span>
+    <fa-icon class="fa-trash pl-1 pr-5" [icon]="faBars" aria-hidden="true" [matMenuTriggerFor]="menu"></fa-icon>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item routerLink="/about">About</button>
+      <button mat-menu-item routerLink="/unit-details">Units</button>
+      <button mat-menu-item routerLink="/search-vehicles">Vehicles</button>
+      <button mat-menu-item routerLink="/property-managers">Property Managers</button>
+    </mat-menu>
+  </span>
+  <span class="text-center">Bellasol Management System</span>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+  <div *ngIf="afAuth.user$ | async; then authenticated else showLogin"></div>
+
+</mat-toolbar>
+<ng-template #showLogin>
+  <span class="mr-3"><button mat-button routerLink="/login">Login</button></span>
+</ng-template>
+<ng-template #authenticated>
+  <span class="mr-3"><button mat-button (click)="this.afAuth.logout()">Logout</button></span>
+</ng-template>

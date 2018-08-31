@@ -1,0 +1,18 @@
+<div class="card-deck mb-5">
+    <div class="card" *ngFor="let owner of owners | async">
+        <div class="card-body">
+            <h4 class="card-title">{{ owner.FirstName }} {{ owner.LastName }}</h4>
+            <p class="card-text">Email 1: {{ owner.Email }}</p>
+            <p class="card-text">Email 2: {{ owner.OtherEmail }}</p>
+            <p class="card-text">M: {{ owner.MobilePhone }}</p>
+            <p class="card-text">H: {{ owner.HomePhone }}</p>
+            <p class="card-text">W: {{ owner.WorkPhone }}</p>
+            <p class="card-text">Created by: {{ owner.CreatedBy }} {{ owner.CreatedOn | date : "medium" }}</p>
+            <p class="card-text">Modified by: {{ owner.UpdatedBy }}  {{ owner.UpdatedOn | date : "medium" }}</p>
+          </div>
+          <div class="card-footer">
+              <fa-icon class="fa-trash float-right" [icon]="faTrash" (click)="deleteOwner(owner.id)"></fa-icon>
+              <fa-icon class="fa-pencil float-left" [icon]="faPencilAlt" (click)="openDialog(owner)"></fa-icon>
+          </div>
+        </div>
+  </div>
