@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import {
   AngularFirestore,
   AngularFirestoreDocument
-} from 'angularfire2/firestore';
-import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+} from '@angular/fire/firestore';
+import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { User } from './user';

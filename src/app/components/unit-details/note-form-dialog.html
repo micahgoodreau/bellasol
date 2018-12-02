@@ -1,0 +1,14 @@
+<h1 mat-dialog-title>Add Owner</h1>
+<div mat-dialog-content>
+  <div [formGroup]="rForm">
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <textarea rows="10" cols="35" matInput placeholder="Note Content" formControlName="NoteContent"></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()" cdkFocusInitial>Save</button>
+</div>

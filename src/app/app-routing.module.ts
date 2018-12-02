@@ -7,14 +7,15 @@ import { AdminGuard } from './core/admin.guard';
 import { AboutComponent } from './components/about/about.component';
 import { ListPropertyManagersComponent } from './components/list-property-managers/list-property-managers.component';
 import { SearchVehiclesComponent } from './components/search-vehicles/search-vehicles.component';
-
+import { ListOwnersComponent } from './components/list-owners/list-owners.component';
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'about', component: AboutComponent},
   {path: 'unit-details/:unit', component: UnitDetailsComponent, canActivate: [CanReadGuard]},
   {path: 'unit-details', component: UnitDetailsComponent, canActivate: [CanReadGuard]},
   {path: 'search-vehicles', component: SearchVehiclesComponent, canActivate: [CanReadGuard]},
-  {path: 'property-managers', component: ListPropertyManagersComponent, canActivate: [CanReadGuard]}
+  {path: 'property-managers', component: ListPropertyManagersComponent, canActivate: [CanReadGuard]},
+  {path: 'list-owners', component: ListOwnersComponent, canActivate: [CanReadGuard]}
 ];
 
 @NgModule({

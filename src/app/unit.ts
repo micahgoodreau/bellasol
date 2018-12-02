@@ -5,6 +5,7 @@ export class Unit {
     public AssociationNumber?: string,
     public BuildingAddress?: string,
     public PropertyManager?: string,
-    public id?: string
+    public id?: string,
+    public HasPropertyManager?: boolean
   ) {}
 }

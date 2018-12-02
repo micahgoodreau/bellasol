@@ -1,7 +1,11 @@
-<h2>Property Managers List</h2>
+<h2>Property Managers List  <fa-icon class="fa-trash" [icon]="faPlusCircle" (click)="openDialog()"></fa-icon></h2>
 
 <ul>
     <li class="text" *ngFor="let item of items | async">
-      {{item.Company}} -- {{item.FirstName}} {{item.LastName}} W:{{item.WorkPhone}} M: {{item.MobilePhone}} Email: {{item.Email}}
+        <fa-icon class="fa-trash" [icon]="faTrash" (click)="deletePropertyManager(item.id)"></fa-icon>
+        <span>  </span>
+        <fa-icon class="fa-trash" [icon]="faPencilAlt" (click)="openEditDialog(item)"></fa-icon>
+        <span>  </span>
+        {{item.Company}} -- {{item.FirstName}} {{item.LastName}} W:{{item.WorkPhone}} M: {{item.MobilePhone}} Email: {{item.Email}}
     </li>
   </ul>

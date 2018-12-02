@@ -1,8 +1,7 @@
-<h2>Notes</h2>
 <div>
   <ul>
     <li class="text" *ngFor="let item of notes | async">
-      Created by: {{item.CreatedBy}} on {{item.CreatedAt}}
+      Created by: {{item.CreatedByDisplayName}} on {{ item.CreatedTimeStamp  | date : "medium" }}
       <p>{{item.NoteContent}}</p>
     </li>
   </ul>

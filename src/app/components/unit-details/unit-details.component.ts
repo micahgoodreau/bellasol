@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../core/auth.service';
 
@@ -48,6 +48,16 @@ export class UnitDetailsComponent implements OnInit {
   }
   openVehicleDialog(): void {
     const dialogRef = this.dialog.open(VehicleFormDialogComponent, {
+      width: '250px',
+      data: {unit: this.unitnumber}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+  openNoteDialog(): void {
+    const dialogRef = this.dialog.open(NoteFormDialogComponent, {
       width: '250px',
       data: {unit: this.unitnumber}
     });
@@ -181,6 +191,35 @@ export class VehicleFormDialogComponent {
   }
   onSaveClick(): void {
     this.db.collection('vehicles').add(this.rForm.value);
+    this.dialogRef.close();
+  }
+}
+@Component({
+  selector: 'app-note-form-dialog',
+  templateUrl: 'note-form-dialog.html',
+})
+export class NoteFormDialogComponent {
+  rForm: FormGroup;
+  constructor(
+    private as: AuthService,
+    private db: AngularFirestore,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<NoteFormDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+      this.rForm = fb.group({
+        'NoteContent': [null],
+        'CreatedTimeStamp': [Date.now()],
+        'CreatedByID': [this.as.userID],
+        'UnitNumber': [this.data.unit],
+        'CreatedByDisplayName': [this.as.userDisplayName],
+      });
+    }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  onSaveClick(): void {
+    this.db.collection('unitNotes').add(this.rForm.value);
     this.dialogRef.close();
   }
 }

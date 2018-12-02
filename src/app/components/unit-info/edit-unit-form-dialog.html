@@ -1,16 +1,50 @@
 <h1 mat-dialog-title>Edit Unit</h1>
 <div mat-dialog-content>
   <div [formGroup]="rForm">
+
+    <!--
     <div class="form-group">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Unit Type" formControlName="UnitType">
       </mat-form-field>
     </div>
+
+
     <div class="form-group">
       <mat-form-field class="example-full-width">
         <input matInput placeholder="Property Manager" formControlName="PropertyManager">
       </mat-form-field>
     </div>
+-->
+<mat-form-field style="width:400px;margin-right:15px;">
+    <mat-select placeholder="Unit Type"  formControlName="UnitType">
+    <mat-option value="Owner Occupied - Full Time">
+        Owner Occupied - Full Time
+    </mat-option>
+    <mat-option value="Owner Occupied - Seasonal">
+        Owner Occupied - Seasonal
+    </mat-option>
+    <mat-option value="Rental - Long Term">
+        Rental - Long Term
+    </mat-option>
+    <mat-option value="Rental - Short Term">
+        Rental - Short Term
+    </mat-option>
+    <mat-option value="Vacant">
+        Vacant
+    </mat-option>
+    </mat-select>
+</mat-form-field>
+
+    <mat-checkbox formControlName="HasPropertyManager" (change)="changePM(rForm.value)">Unit has a proprty manager</mat-checkbox>
+
+    <mat-form-field [hidden]="!this.showPMfield" style="width:400px;margin-right:15px;">
+        <mat-select placeholder="Property Manager"  formControlName="PropertyManager">
+        <mat-option *ngFor="let propertymanagerlistitem of this.items | async" value="{{propertymanagerlistitem.id}}">
+            {{propertymanagerlistitem.Company}} - {{propertymanagerlistitem.FirstName}} {{propertymanagerlistitem.LastName}}
+        </mat-option>
+        </mat-select>
+    </mat-form-field>
 
   </div>
 

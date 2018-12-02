@@ -1,0 +1,71 @@
+<h1 mat-dialog-title>Add Owner</h1>
+<div mat-dialog-content>
+  <div [formGroup]="this.data.rForm">
+      <div class="form-group">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Company" formControlName="Company">
+          </mat-form-field>
+        </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="First Name" formControlName="FirstName">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Last Name" formControlName="LastName">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Address" formControlName="Address">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="City" formControlName="City">
+        </mat-form-field>
+      </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="State" formControlName="State">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Zip" formControlName="ZIPCode">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Mobile Phone" formControlName="MobilePhone">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Home Phone" formControlName="HomePhone">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Work Phone" formControlName="WorkPhone">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Email" formControlName="Email">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field class="example-full-width">
+        <input matInput placeholder="Other Email" formControlName="OtherEmail">
+      </mat-form-field>
+    </div>
+
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button (click)="onSaveClick()" cdkFocusInitial>Save</button>
+</div>

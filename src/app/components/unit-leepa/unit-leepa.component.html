@@ -10,6 +10,7 @@
       <p class="card-text">{{ (item | async)?.ownerline4 }}</p>
       <p class="card-text">{{ (item | async)?.ownerline5 }}</p>
       <p class="card-text">{{ (item | async)?.updated }}</p>
+      <app-unit-sales unitNumber="{{ (item | async)?.unit }}"></app-unit-sales>
     </div>
   </div>
 </div>

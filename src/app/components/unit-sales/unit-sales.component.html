@@ -1,0 +1,5 @@
+<ul>
+    <li class="text" *ngFor="let sale of sales | async">
+      {{sale.date | date : "medium"}} -- {{sale.price}}
+    </li>
+  </ul>

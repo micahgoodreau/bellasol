@@ -2,7 +2,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 import {
   AngularFirestore,
   AngularFirestoreDocument
-} from 'angularfire2/firestore';
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { UnitNote } from '../../unitnote';
 

@@ -1,14 +1,17 @@
 <div class="card-deck mb-5">
   <div class="card">
-    <div class="card-body">
-      <h4 class="card-title">Unit {{ (item | async)?.UnitNumber }}</h4>
-      <p class="card-text">Association: {{ (item | async)?.AssociationNumber }}</p>
-      <p class="card-text">Building Address: {{ (item | async)?.BuildingAddress }}</p>
-      <p class="card-text">Unit Type: {{ (item | async)?.UnitType }}</p>
-      <p class="card-text">Property Manager: {{ (item | async)?.PropertyManager }}</p>
+    <div class="card-body"  *ngIf="item | async as pmData">
+      <h4 class="card-title">Unit {{ pmData.UnitNumber }}</h4>
+      <p class="card-text">Association: {{ pmData.AssociationNumber }}</p>
+      <p class="card-text">Building Address: {{ pmData.BuildingAddress }}</p>
+      <p class="card-text">Unit Type: {{ pmData.UnitType }}</p>
+      <div *ngIf="pmData.PropertyManager != ''">
+      <p class="card-text">Property Manager: {{ pmData.PropertyManager }}</p>
+      <app-unit-property-manager propertyManagerId="{{pmData.PropertyManager}}"></app-unit-property-manager>
     </div>
-    <div class="card-footer">
-        <fa-icon class="fa-pencil float-left" [icon]="faPencilAlt" (click)="openDialog(item)"></fa-icon>
+    </div>
+    <div class="card-footer" *ngIf="item | async as pmData">
+        <fa-icon class="fa-pencil float-left" [icon]="faPencilAlt" (click)="openDialog(pmData)"></fa-icon>
     </div>
   </div>
 </div>

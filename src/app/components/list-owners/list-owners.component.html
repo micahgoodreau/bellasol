@@ -1,0 +1,54 @@
+<h2>Owners List  <fa-icon class="fa-trash" [icon]="faPlusCircle" (click)="openDialog()"></fa-icon></h2>
+
+<table class="table table-striped" [mfData]="items | async" #mf="mfDataTable" [mfRowsOnPage]="50">
+  <thead>
+  <tr>
+      <th style="width: 10%">
+          <mfDefaultSorter by="UnitNumber">Unit Number</mfDefaultSorter>
+      </th>
+      <th style="width: 20%">
+        <mfDefaultSorter by="FirstName">First Name</mfDefaultSorter>
+    </th>
+    <th style="width: 20%">
+      <mfDefaultSorter by="LastName">Last Name</mfDefaultSorter>
+  </th>
+      <th style="width: 30%">
+          <mfDefaultSorter by="Email">Email</mfDefaultSorter>
+      </th>
+
+      <th style="width: 20%">
+          <mfDefaultSorter by="MobilePhone">MobilePhone</mfDefaultSorter>
+      </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let item of mf.data">
+    <td>{{item.UnitNumber}}</td>
+    <td>{{item.FirstName}}</td>
+    <td>{{item.LastName}}</td>
+      <td>{{item.Email}}</td>
+      <td class="text-right">{{item.MobilePhone}}</td>
+
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+      <td colspan="4">
+          <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+      </td>
+  </tr>
+  </tfoot>
+</table>
+
+
+<!--
+<ul>
+    <li class="text" *ngFor="let item of items | async">
+        <fa-icon class="fa-trash" [icon]="faTrash" (click)="deleteOwner(item.id)"></fa-icon>
+        <span>  </span>
+        <fa-icon class="fa-trash" [icon]="faPencilAlt" (click)="openEditDialog(item)"></fa-icon>
+        <span>  </span>
+        {{item.UnitNumber}} -- {{item.FirstName}} {{item.LastName}} W:{{item.WorkPhone}} M: {{item.MobilePhone}} Email: {{item.Email}}
+    </li>
+  </ul>
+-->

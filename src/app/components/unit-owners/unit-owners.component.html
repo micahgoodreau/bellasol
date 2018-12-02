@@ -2,6 +2,8 @@
     <div class="card" *ngFor="let owner of owners | async">
         <div class="card-body">
             <h4 class="card-title">{{ owner.FirstName }} {{ owner.LastName }}</h4>
+            <p class="card-text">{{ owner.HomeAddress }}</p>
+            <p class="card-text">{{ owner.City }}  {{ owner.State }}  {{ owner.ZIPCode }}</p>
             <p class="card-text">Email 1: {{ owner.Email }}</p>
             <p class="card-text">Email 2: {{ owner.OtherEmail }}</p>
             <p class="card-text">M: {{ owner.MobilePhone }}</p>

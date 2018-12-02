@@ -4,7 +4,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PropertyManager } from '../../propertymanager';
+import { Owner } from '../../owner';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faPencilAlt } from '@fortawesome/free-solid-svg-icons';
@@ -16,36 +16,40 @@ export interface DialogData {
 }
 
 @Component({
-  selector: 'app-list-property-managers',
-  templateUrl: './list-property-managers.component.html',
-  styleUrls: ['./list-property-managers.component.scss']
+  selector: 'app-list-owners',
+  templateUrl: './list-owners.component.html',
+  styleUrls: ['./list-owners.component.scss']
 })
-export class ListPropertyManagersComponent implements OnInit {
+export class ListOwnersComponent implements OnInit {
   faPlusCircle = faPlusCircle;
   faTrash = faTrash;
   faPencilAlt = faPencilAlt;
-  propertyManagerCollection: AngularFirestoreCollection<PropertyManager>;
-  items: Observable<PropertyManager[]>;
+  ownerCollection: AngularFirestoreCollection<Owner>;
+  items: Observable<Owner[]>;
+  items2: Owner[];
   rForm: FormGroup;
   constructor(
     private fb: FormBuilder,
     private db: AngularFirestore,
     private dialog: MatDialog) {
 
-    this.propertyManagerCollection = this.db.collection<PropertyManager>('propertyManagers');
-  this.items = this.propertyManagerCollection.snapshotChanges().pipe(
+    this.ownerCollection = this.db.collection<Owner>('owners');
+  this.items = this.ownerCollection.snapshotChanges().pipe(
     map(actions => {
       return actions.map(a => {
-        const data = a.payload.doc.data() as PropertyManager;
+        const data = a.payload.doc.data() as Owner;
         const id = a.payload.doc.id;
         return { id, ...data };
       });
     })
   );
+  console.log(this.items);
+  this.items2 = [{'FirstName': 'Bob', 'LastName': 'Smith', 'Email': 'bobo@bob.com', 'MobilePhone': '239-220-1234', 'UnitNumber': '1312'},
+   {'FirstName': 'Fred', 'LastName': 'Jones', 'Email': 'fred@bob.com', 'MobilePhone': '239-220-7788', 'UnitNumber': '1444'}];
    }
 
-   deletePropertyManager(id): void {
-      this.db.doc('/propertyManagers/' + id).delete();
+   deleteOwner(id): void {
+      this.db.doc('/owner/' + id).delete();
     }
 
    openDialog(): void {
@@ -63,7 +67,7 @@ export class ListPropertyManagersComponent implements OnInit {
       'Email': [null],
       'OtherEmail': [null]
     });
-    const dialogRef = this.dialog.open(ProprtyManagerFormDialogComponent, {
+    const dialogRef = this.dialog.open(ListOwnerFormDialogComponent, {
       width: '250px',
       data: {id: null, rForm: this.rForm}
     });
@@ -72,24 +76,24 @@ export class ListPropertyManagersComponent implements OnInit {
       console.log('The dialog was closed');
     });
   }
-  openEditDialog(propertyManager): void {
+  openEditDialog(owner): void {
     this.rForm = this.fb.group({
-      'Company': [propertyManager.Company, Validators.required],
-      'FirstName': [propertyManager.FirstName, Validators.required],
-      'LastName': [propertyManager.LastName, Validators.required],
-      'Address': [propertyManager.Address],
-      'City': [propertyManager.City],
-      'State': [propertyManager.State],
-      'ZIPCode': [propertyManager.ZIPCode],
-      'MobilePhone': [propertyManager.MobilePhone],
-      'HomePhone': [propertyManager.HomePhone],
-      'WorkPhone': [propertyManager.WorkPhone],
-      'Email': [propertyManager.Email],
-      'OtherEmail': [propertyManager.OtherEmail]
+      'Company': [owner.Company, Validators.required],
+      'FirstName': [owner.FirstName, Validators.required],
+      'LastName': [owner.LastName, Validators.required],
+      'Address': [owner.Address],
+      'City': [owner.City],
+      'State': [owner.State],
+      'ZIPCode': [owner.ZIPCode],
+      'MobilePhone': [owner.MobilePhone],
+      'HomePhone': [owner.HomePhone],
+      'WorkPhone': [owner.WorkPhone],
+      'Email': [owner.Email],
+      'OtherEmail': [owner.OtherEmail]
     });
-    const dialogRef = this.dialog.open(ProprtyManagerFormDialogComponent, {
+    const dialogRef = this.dialog.open(ListOwnerFormDialogComponent, {
       width: '250px',
-      data: {id: propertyManager.id, rForm: this.rForm}
+      data: {id: owner.id, rForm: this.rForm}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -101,13 +105,13 @@ export class ListPropertyManagersComponent implements OnInit {
 
 }
 @Component({
-  selector: 'app-property-manager-form-dialog',
-  templateUrl: 'property-manager-form-dialog.html',
+  selector: 'app-list-owner-form-dialog',
+  templateUrl: 'owner-form-dialog.html',
 })
-export class ProprtyManagerFormDialogComponent {
+export class ListOwnerFormDialogComponent {
   constructor(
     private db: AngularFirestore,
-    public dialogRef: MatDialogRef<ProprtyManagerFormDialogComponent>,
+    public dialogRef: MatDialogRef<ListOwnerFormDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) {
 
     }
@@ -117,9 +121,9 @@ export class ProprtyManagerFormDialogComponent {
   }
   onSaveClick(): void {
     if (this.data.id !== null) {
-      this.db.doc<PropertyManager>('propertyManagers/' + this.data.id).update(this.data.rForm.value);
+      this.db.doc<Owner>('owner/' + this.data.id).update(this.data.rForm.value);
     } else {
-      this.db.collection('propertyManagers').add(this.data.rForm.value);
+      this.db.collection('owner').add(this.data.rForm.value);
     }
     this.dialogRef.close();
   }

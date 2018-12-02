@@ -1,3 +1,6 @@
-<p>
-  unit-property-manager works!
-</p>
+<div>
+<p>{{ (item | async)?.CompanyName }}</p>
+<p>{{ (item | async)?.FirstName }} {{ (item | async)?.LastName }}</p>
+<p>W: {{ (item | async)?.WorkPhone }} M: {{ (item | async)?.MobilePhone }}</p>
+<p>{{ (item | async)?.Email }} {{ (item | async)?.OtherEmail }}</p>
+</div>
